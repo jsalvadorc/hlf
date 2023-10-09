@@ -6,10 +6,10 @@ from variables import *
 def jugar():
     jugador = Tablero(jugador_id="Jugador")
     maquina = Tablero(jugador_id="Máquina")
-    
+    #se define la funcion jugar y se crean los objetos tablero
     jugador.colocar_barcos()
     maquina.colocar_barcos()
-    
+    #se llama a la funcion para colocar los barcos
     while True:
         mostrar_tablero(jugador.tablero_barcos, jugador.tablero_disparos)
         mostrar_tablero(maquina.tablero_disparos, maquina.tablero_barcos)  

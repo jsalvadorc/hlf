@@ -86,8 +86,8 @@ class Tablero:
         return np.sum(self.tablero_barcos) == 0
     def actualizar_tablero(self, coordenada, resultado):
         fila, columna = coordenada
-        if resultado == "hit":
+        if resultado: 
             self.tablero_disparos[fila][columna] = "X"  
         else:
-            self.tablero_disparos[fila][columna] = "F"  
+            self.tablero_disparos[fila][columna] = "F"
  
