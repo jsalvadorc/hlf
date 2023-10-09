@@ -1,13 +1,4 @@
-# Boat lengths
-BARCO_1_LENGTH = 1
-BARCO_2_LENGTH = 2
-BARCO_3_LENGTH = 3
-BARCO_4_LENGTH = 4
 
-# Boat quantities
-BARCO1_QUANTITY = 4
-BARCO2_QUANTITY = 3
-BARCO3_QUANTITY = 2
-BARCO4_QUANTITY = 1
 
-BOARD_SIZE=10
+tamaño_tablero= 10  # You can change the size of the board here
+barcos = [1, 1, 1, 1, 2, 2, 2, 3, 3, 4]  # Ships of different lengths

@@ -1,51 +1,68 @@
 from clases import Tablero
 from funciones import *
 from variables import *
-
-
-def jugar():
-    jugador = Tablero(jugador_id="Jugador")
-    maquina = Tablero(jugador_id="Máquina")
-    #se define la funcion jugar y se crean los objetos tablero
-    jugador.colocar_barcos()
-    maquina.colocar_barcos()
-    #se llama a la funcion para colocar los barcos
+import random
+def jugar_turno(tablero):
     while True:
-        mostrar_tablero(jugador.tablero_barcos, jugador.tablero_disparos)
-        mostrar_tablero(maquina.tablero_disparos, maquina.tablero_barcos)  
-    
-        entrada = input("Tu turno. Ingresa coordenadas (fila y columna separadas por espacio): ").split()
-        if len(entrada) != 2:
-            print("Por favor, ingresa dos coordenadas separadas por espacio.")
-            continue
-        
-        try:
-            fila, columna = int(entrada[0]), int(entrada[1])
-        except ValueError:
-            print("Por favor, ingresa coordenadas válidas.")
-            continue
-        
-        if 0 <= fila < len(jugador.tablero_disparos) and 0 <= columna < len(jugador.tablero_disparos[0]):
-            if maquina.disparar((fila, columna)):
-                print("¡Tocado!")
-            else:
-                print("Agua")
+        fila = int(input("Introduce fila para disparar (0-9): "))
+        columna = int(input("Introduce columna para disparar (0-9): "))
+        if 0 <= fila < tamaño_tablero and 0 <= columna < tamaño_tablero and tablero.tablero_disparos[fila][columna] == "-":
+            resultado_disparo = tablero.disparar(fila, columna)
+            return fila, columna, resultado_disparo
         else:
-            print("Coordenadas fuera del rango.")
-        
-        if maquina.hundido_todos_barcos():
-            print("¡Felicidades! Has ganado el juego.")
-            break
-        
-        fila, columna = maquina.generar_coordenada_aleatoria()
-        if jugador.disparar((fila, columna)):
-            print(f"La máquina te ha impactado en la fila {fila} y columna {columna}.")
+            print("Coordenadas inválidas o ya disparaste allí. Inténtalo de nuevo.")
+if __name__ == "__main__":
+    '''Usage: This line checks whether the current script is being run directly (as the main program) or if it is being imported as 
+    a module into another script.
+Why: By using __name__ == "__main__", you can write code that will only be executed when the script is run directly. 
+This allows you to separate the script's functionality (when run standalone) from its functions and classes that might be reused in other scripts. It promotes code reusability'''
+    # Create separate boards for the player and the machine
+    tablero_jugador = Tablero(tamaño_tablero, barcos)
+    tablero_maquina = Tablero(tamaño_tablero, barcos)
+
+    # Game loop
+    while True:
+        '''Usage: The while True loop creates an infinite loop, meaning it will keep executing its block of code as long as the 
+        condition True remains true.
+Why: In the context of the game, an infinite loop is used to keep the game running until a specific condition (winning or
+ losing) is met. This structure ensures that the game continues indefinitely until one of the players wins or loses.'''
+        # Player's turn
+        print("Tu turno:")
+        fila, columna, resultado_disparo = jugar_turno_jugador(tablero_maquina)
+        print(f"Has disparado en la fila {fila} y columna {columna}.")
+        if resultado_disparo:
+            print("¡Impacto! Has golpeado un barco.")
         else:
-            print(f"La máquina ha fallado en la fila {fila} y columna {columna}.")
-        
-        if jugador.hundido_todos_barcos():
-            print("La máquina ha ganado. Intenta de nuevo.")
+            print("Agua. No has golpeado ningún barco.")
+        tablero_maquina.mostrar_tablero_actual()
+
+        # Check if player has won
+        if tablero_maquina.hundir_todos_barcos():
+            print("¡Felicidades! Has hundido todos los barcos de la máquina.")
             break
 
-if __name__ == "__main__":
-    jugar()
+        # Computer's turn
+        print("Turno de la máquina:")
+        fila, columna, resultado_disparo = jugar_turno_maquina(tablero_jugador)
+        print(f"La máquina disparó en la fila {fila} y columna {columna}.")
+        if resultado_disparo:
+            print("¡Impacto! La máquina ha golpeado un barco.")
+        else:
+            print("Agua. La máquina no ha golpeado ningún barco.")
+        tablero_jugador.mostrar_tablero_actual()
+
+        # Check if computer has won
+        if tablero_jugador.hundir_todos_barcos():
+            print("¡La máquina ha hundido todos tus barcos! Has perdido.")
+            break
+
+
+
+
+
+
+
+
+
+
+
