@@ -14,9 +14,28 @@ class Tablero:
         self.tablero_barcos = [[" " for _ in range(BOARD_SIZE)] for _ in range(BOARD_SIZE)]
         self.tablero_disparos = [[" " for _ in range(BOARD_SIZE)] for _ in range(BOARD_SIZE)]
         
+   
+
     def colocar_barcos(self):
+        #cantidad de barcos
+        BARCO1_QUANTITY = 4
+        BARCO2_QUANTITY = 3
+        BARCO3_QUANTITY = 2
+        BARCO4_QUANTITY = 1
+
         for barco, longitud in self.barcos.items():
-            cantidad = globals()[f'BARCO{barco[-1]}_QUANTITY']
+            # Accessing boat quantities directly from variables
+            if barco == 'BARCO1':
+                cantidad = BARCO1_QUANTITY
+            elif barco == 'BARCO2':
+                cantidad = BARCO2_QUANTITY
+            elif barco == 'BARCO3':
+                cantidad = BARCO3_QUANTITY
+            elif barco == 'BARCO4':
+                cantidad = BARCO4_QUANTITY
+            else:
+                return ValueError("Invalid boat type.")
+
             for _ in range(cantidad):
                 fila, columna, direccion = self.generar_coordenada_y_direccion(longitud)
                 while not self.validar_colocacion_barco(fila, columna, longitud, direccion):
@@ -31,6 +50,8 @@ class Tablero:
                         self.tablero_barcos[fila][columna + i] = 1
                     elif direccion == 'oeste':
                         self.tablero_barcos[fila][columna - i] = 1
+
+
 
     def generar_coordenada_y_direccion(self, longitud):
         fila = np.random.randint(0, BOARD_SIZE)

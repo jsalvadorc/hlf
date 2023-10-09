@@ -1,5 +1,6 @@
 from clases import Tablero
 from funciones import *
+from variables import *
 
 
 def jugar():
