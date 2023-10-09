@@ -2,7 +2,7 @@ from clases import Tablero
 from funciones import *
 from variables import *
 import random
-def jugar_turno(tablero):
+'''def jugar_turno(tablero):
     while True:
         fila = int(input("Introduce fila para disparar (0-9): "))
         columna = int(input("Introduce columna para disparar (0-9): "))
@@ -10,7 +10,7 @@ def jugar_turno(tablero):
             resultado_disparo = tablero.disparar(fila, columna)
             return fila, columna, resultado_disparo
         else:
-            print("Coordenadas inválidas o ya disparaste allí. Inténtalo de nuevo.")
+            print("Coordenadas inválidas o ya disparaste allí. Inténtalo de nuevo.")'''
 if __name__ == "__main__":
     '''Usage: This line checks whether the current script is being run directly (as the main program) or if it is being imported as 
     a module into another script.
@@ -21,7 +21,7 @@ This allows you to separate the script's functionality (when run standalone) fro
     tablero_maquina = Tablero(tamaño_tablero, barcos)
 
     # Game loop
-    while True:
+    while True:#mientras el bucle sea verdadero se va cambiando de turno
         '''Usage: The while True loop creates an infinite loop, meaning it will keep executing its block of code as long as the 
         condition True remains true.
 Why: In the context of the game, an infinite loop is used to keep the game running until a specific condition (winning or

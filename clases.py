@@ -31,12 +31,7 @@ class Tablero:
                         elif direccion == 'oeste':
                             self.tablero_barcos[fila][columna - i] = "O"
                     break
-    def hundir_todos_barcos(self):# Verifica si todos los barcos han sido hundidos en el tablero
-        for fila in self.tablero_barcos:
-            for casilla in fila:
-                if casilla == "O":
-                    return False 
-        return True             
+            
     def generar_coordenada_y_direccion(self,longitud): # Genera coordenadas y dirección aleatoria para colocar los barcos
         fila = random.randint(0, self.tamaño - 1)
         columna = random.randint(0, self.tamaño - 1)
@@ -57,7 +52,12 @@ class Tablero:
             if all(self.tablero_barcos[fila][columna - i] == "-" for i in range(longitud)):
                 return True
         return False
-
+    def hundir_todos_barcos(self):# Verifica si todos los barcos han sido hundidos en el tablero
+        for fila in self.tablero_barcos:
+            for casilla in fila:
+                if casilla == "O":
+                    return False 
+        return True   
     def disparar(self, fila, columna):# Realiza un disparo en las coordenadas especificadas y devuelve True si golpea un barco, False si no
         if self.tablero_barcos[fila][columna] == "O":
             self.tablero_barcos[fila][columna] = "X"
