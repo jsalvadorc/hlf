@@ -56,7 +56,7 @@ class Tablero:
     def disparar(self, coordenada):
         fila, columna = coordenada
         if self.tablero_barcos[fila][columna] == 1:
-            self.tablero_barcos[fila][columna] = 2  # Mark hit
+            self.tablero_barcos[fila][columna] = 2  
             return True
         else:
             return False
@@ -66,7 +66,7 @@ class Tablero:
     def actualizar_tablero(self, coordenada, resultado):
         fila, columna = coordenada
         if resultado == "hit":
-            self.tablero_disparos[fila][columna] = "X"  # Mark hit on the shots board
+            self.tablero_disparos[fila][columna] = "X"  
         else:
-            self.tablero_disparos[fila][columna] = "F"  # Mark miss on the shots board
+            self.tablero_disparos[fila][columna] = "F"  
  
