@@ -12,7 +12,7 @@ def jugar():
     
     while True:
         mostrar_tablero(jugador.tablero_barcos, jugador.tablero_disparos)
-        mostrar_tablero(maquina.tablero_disparos, maquina.tablero_barcos)  # Show the machine's board
+        mostrar_tablero(maquina.tablero_disparos, maquina.tablero_barcos)  
     
         entrada = input("Tu turno. Ingresa coordenadas (fila y columna separadas por espacio): ").split()
         if len(entrada) != 2:
