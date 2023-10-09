@@ -2,7 +2,7 @@ from variables import *
 import numpy as np
 import random
 
-
+'''
 def mostrar_tablero(tablero_barcos, tablero_disparos):
     # Función para mostrar el tablero de barcos y disparos
     print("Tablero de Barcos:")
@@ -10,7 +10,7 @@ def mostrar_tablero(tablero_barcos, tablero_disparos):
         print(" ".join(str(casilla) for casilla in fila))
     print("Tablero de Disparos:")
     for fila in tablero_disparos:
-        print(" ".join(str(casilla) for casilla in fila))
+        print(" ".join(str(casilla) for casilla in fila))'''
 
 def validar_coordenadas(fila, columna, tamaño_tablero):
     # Función para validar si las coordenadas están dentro del rango del tablero
@@ -37,8 +37,7 @@ def jugar_turno_maquina(tablero):
     resultado_disparo = tablero.disparar(fila, columna)
     return fila, columna, resultado_disparo
 def disparar(self, fila, columna):
-        '''disparar(self, fila, columna):
-
+        '''
 Usage: Updates the game boards based on the specified coordinates, marking hits ("X") or misses ("F") on the opponent's 
 ships board (tablero_barcos) and shots fired board (tablero_disparos).
 Why: Manages the state of the game, determining the impact of each shot and facilitating the win condition.'''
@@ -52,7 +51,7 @@ Why: Manages the state of the game, determining the impact of each shot and faci
             self.tablero_disparos[fila][columna] = "F"
             return False
 
-def crear_barco_random(eslora):
+'''def crear_barco_random(eslora):
 
     # Función para crear un barco de eslora específica en una posición aleatoria
     orientacion = random.choice(["este", "oeste", "norte", "sur"]) 
@@ -82,4 +81,4 @@ def crear_barco_random(eslora):
             fila_random = fila_random + 1
             barco_random.append((fila_random, columna_random))
     
-    return barco_random
+    return barco_random'''

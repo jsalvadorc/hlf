@@ -1,7 +1,6 @@
 import numpy as np
 from variables import *
-from funciones import crear_barco_random
-import random
+from funciones import *
 
 
 class Tablero:
