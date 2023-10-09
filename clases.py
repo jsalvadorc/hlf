@@ -11,12 +11,12 @@ class Tablero:
             "Barco3": BARCO_3_LENGTH,
             "Barco4": BARCO_4_LENGTH
         }
-        self.tablero_barcos = np.zeros(self.dimensiones)
-        self.tablero_disparos = np.zeros(self.dimensiones)
+        self.tablero_barcos = [[" " for _ in range(BOARD_SIZE)] for _ in range(BOARD_SIZE)]
+        self.tablero_disparos = [[" " for _ in range(BOARD_SIZE)] for _ in range(BOARD_SIZE)]
         
     def colocar_barcos(self):
         for barco, longitud in self.barcos.items():
-            cantidad = globals()[f'BARCO_{barco[-1]}_QUANTITY']
+            cantidad = globals()[f'BARCO{barco[-1]}_QUANTITY']
             for _ in range(cantidad):
                 fila, columna, direccion = self.generar_coordenada_y_direccion(longitud)
                 while not self.validar_colocacion_barco(fila, columna, longitud, direccion):
