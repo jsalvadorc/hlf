@@ -16,7 +16,8 @@ class Tablero:
         
     def colocar_barcos(self):
         for barco, longitud in self.barcos.items():
-            for _ in range(self.barcos[barco]):
+            cantidad = globals()[f'BARCO_{barco[-1]}_QUANTITY']
+            for _ in range(cantidad):
                 fila, columna, direccion = self.generar_coordenada_y_direccion(longitud)
                 while not self.validar_colocacion_barco(fila, columna, longitud, direccion):
                     fila, columna, direccion = self.generar_coordenada_y_direccion(longitud)
@@ -68,11 +69,4 @@ class Tablero:
             self.tablero_disparos[fila][columna] = "X"  # Mark hit on the shots board
         else:
             self.tablero_disparos[fila][columna] = "F"  # Mark miss on the shots board
-    def mostrar_tablero(tablero_jugador, tablero_disparos):
-        print("Tablero de Barcos:")
-        for fila in tablero_jugador:
-            print(" ".join(str(casilla) for casilla in fila))
-        
-        print("\nTablero de Disparos:")
-        for fila in tablero_disparos:
-            print(" ".join(" " if casilla == 0 else "X" if casilla == 1 else "O" for casilla in fila))
+ 
